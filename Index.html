@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<!-- Include Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-3H/IQ9kD3MPSy72udPNPJuJJdF8P3s2bZGG9c99w5WzIBpNenlSxyw/NRc3FVxT7EElpMLc8oBxw19sRvcOwFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #3f67b7; /* Light blue background */
+    color: #ac1010; /* Dark text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .dashboard {
+    background-color: #13a3dc; /* White background */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(5, 148, 220, 0.1); /* Soft shadow */
+    display: flex;
+    flex-direction: column; /* Arrange children in column */
+    max-width: 800px;
+    margin: 20px;
+    overflow: hidden; /* Prevents box-shadow overflow */
+  }
+  
+  .input-output {
+    flex: 1;
+    padding: 30px;
+    background-color: #f8f8f8; /* Light gray background */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .input-output h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+    color: #444; /* Dark gray heading */
+  }
+  
+  .input-output textarea {
+    width: calc(100% - 30px); /* Adjusted width */
+    padding: 15px;
+    border: 2px solid #ddd; /* Light gray border */
+    background-color: #f5f5f5; /* Lighter gray background */
+    color: #333; /* Dark text color */
+    border-radius: 8px;
+    resize: none; /* Prevent textarea resize */
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .output-box {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #ddd; /* Light gray border */
+    background-color: #f5f5f5; /* Lighter gray background */
+    border-radius: 8px;
+    min-height: 150px;
+    color: #555; /* Dark gray text */
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-y: auto; /* Enable vertical scroll */
+  }
+  
+  .buttons {
+    display: flex;
+    flex-wrap: wrap; /* Wrap buttons to next line if space is not enough */
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0; /* Adjust padding for spacing */
+    background-color: #7289da; /* Discord blue */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px; /* Larger padding */
+    background-color: #4c5b7f; /* Darker blue */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    font-size: 18px;
+    text-transform: uppercase; /* Uppercase text */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  
+  .button:hover {
+    background-color: #677bc4; /* Lighter blue on hover */
+    transform: translateY(-3px); /* Lift the button slightly on hover */
+  }
+  
+  .button i {
+    margin-right: 10px; /* Space between icon and text */
+  }
+  
+  .sidebar {
+    background-color: #13a3dc; /* Sidebar background */
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    color: #fff; /* White text color */
+    font-size: 16px;
+  }
+  
+  .sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff; /* White text color */
+  }
+  
+  .sidebar ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="input-output">
+      <h2>Input Field</h2>
+      <textarea rows="6" placeholder="Enter your code here..." cols="40"></textarea> <!-- Adjusted cols attribute -->
+      <h2>Output Field</h2>
+      <div class="output-box" id="outputBox">
+        Results will appear here.
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="button" id="convertButton"><i class="fas fa-exchange-alt"></i> Convert Code</button>
+      <button class="button" id="debugButton"><i class="fas fa-bug"></i> Debugging</button>
+      <button class="button" id="formatButton"><i class="fas fa-code"></i> Format Code</button>
+      <button class="button" id="explainButton"><i class="fas fa-book"></i> Explain Code</button>
+      <button class="button" id="completeButton"><i class="fas fa-check"></i> Complete Code</button>
+      <button class="button" id="saveButton"><i class="fas fa-save"></i> Save Code</button>
+      <button class="button" id="loadButton"><i class="fas fa-file-import"></i> Load Code</button>
+      <button class="button" id="shareButton"><i class="fas fa-share-alt"></i> Share Code</button>
+      <button class="button" id="runButton"><i class="fas fa-play"></i> Run Code</button>
+    </div>
+    <div class="sidebar">
+      <h2>Project Details</h2>
+      <ul>
+        <li>Project Name: AI Dashboard</li>
+        <li>Owner: Hafsa Waheed</li>
+        <li>Version: 1.0</li>
+        <li>Created: July 2023</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Include Font Awesome JS for icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-bwQDh2om45IZ5UvKtcZTtR5TtL9gkOaQlSTeRfNStx85lZOF8P2xvPnXp14LSZQOoNFM+RX9+TtdzCav7j3PhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
